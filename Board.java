@@ -83,45 +83,44 @@ public class Board
 					switch (BoardUI[j][i]) 
 					{
 						case 0: System.out.print("_" + "\t"); //Blank space
-								break;
+							break;
 							
 						case 1: System.out.print("\u2659" + "\t");  //White Pawn
-		            			break;
+		            				break;
 		            			
-		            	case 2: System.out.print("\u2656" + "\t");  //White Castle
-		            			break;
+						case 2: System.out.print("\u2656" + "\t");  //White Castle
+		            				break;
 		            			
-		            	case 3: System.out.print("\u2658" + "\t");  //White Knight
-		            			break;
-		            	
-		            	case 4: System.out.print("\u2657" + "\t");  //White Bishop
-		            			break;
-		            			
-		            	case 5: System.out.print("\u2655" + "\t");  //White Queen
-		            			break;
-		            			
-		            	case 6: System.out.print("\u2654" + "\t");  //White King
-		            		   	break;
-		            		   	
-			            case 7: System.out.print("\u265F" + "\t");  //Black Pawn
-			                    break;
-			                     
-			            case 8: System.out.print("\u265C" + "\t");  //Black Castle
-			                    break;
-			                     
-			            case 9: System.out.print("\u265E" + "\t");  //Black Knight
-			                    break;
-			                     
-			            case 10: System.out.print("\u265D" + "\t");  //Black Bishop
-			                     break;
-			                     
-			            case 11: System.out.print("\u265B" + "\t");  //Black Queen
-			                     break;
-			                     
-			            case 12: System.out.print("\u265A" + "\t");  //Black King
-			                     break;
-			                     
-			        }		                 
+						case 3: System.out.print("\u2658" + "\t");  //White Knight
+								break;
+
+						case 4: System.out.print("\u2657" + "\t");  //White Bishop
+								break;
+
+						case 5: System.out.print("\u2655" + "\t");  //White Queen
+								break;
+
+						case 6: System.out.print("\u2654" + "\t");  //White King
+								break;
+
+						case 7: System.out.print("\u265F" + "\t");  //Black Pawn
+								break;
+
+						case 8: System.out.print("\u265C" + "\t");  //Black Castle
+								break;
+
+						case 9: System.out.print("\u265E" + "\t");  //Black Knight
+								break;
+
+						case 10: System.out.print("\u265D" + "\t");  //Black Bishop
+								break;
+
+						case 11: System.out.print("\u265B" + "\t");  //Black Queen
+								break;
+
+						case 12: System.out.print("\u265A" + "\t");  //Black King
+								break;
+			                }		                 
 									
 				}
 				System.out.println("\n");
@@ -152,7 +151,7 @@ public class Board
 									}
 									else if(A.PathCheck(c, d) == 2)
 									{
-										for(Piece B: BlackPiecelist)			//Pawn kills enemy piece (remove from piecelist)
+										for(Piece B: BlackPiecelist)			//Pawn kills enemy piece (remove from piecelist
 										{
 											if(B.x == c && B.y == d)
 											{
