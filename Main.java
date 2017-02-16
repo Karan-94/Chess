@@ -3,8 +3,8 @@ public class Main
 {
 
 	public static void main(String[] args) 
-	{
-		Board Gameboard = new Board();
+	{						//TEST MOVES
+		Board Gameboard = new Board();		
 		Gameboard.Display();
 		Gameboard.move(1, 1, 1, 3);		//White Pawn moves from B2 to B4
 		Gameboard.Display();
