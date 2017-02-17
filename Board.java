@@ -19,10 +19,9 @@ public class Board
 		ArrayList<Piece> WhitePiecelist = new ArrayList<Piece>(); 	
 		ArrayList<Piece> BlackPiecelist = new ArrayList<Piece>();
 		
-		Board() 	 //Starting configuration of the board
+		Board()  // Starting configuration of the board
 		{
-			
-			
+						
 			BoardUI[0][0] = WCastle;
 			BoardUI[7][0] = WCastle;
 			BoardUI[1][0] = WKnight;
@@ -41,17 +40,17 @@ public class Board
 			BoardUI[3][7] = BQueen;
 			BoardUI[4][7] = BKing;
 			
-			WhitePiecelist.add(new Castle(0,0,this,true));		//Adding all castles to piecelist
+			WhitePiecelist.add(new Castle(0,0,this,true));	//Adding all castles to piecelist
 			WhitePiecelist.add(new Castle(7,0,this,true));
 			BlackPiecelist.add(new Castle(0,7,this,false));
 			BlackPiecelist.add(new Castle(7,7,this,false));
 			
-			WhitePiecelist.add(new Bishop(2,0,this,true));		//Adding all bishops to piecelist
+			WhitePiecelist.add(new Bishop(2,0,this,true));	//Adding all bishops to piecelist
 			WhitePiecelist.add(new Bishop(5,0,this,true));
 			BlackPiecelist.add(new Bishop(2,7,this,false));
 			BlackPiecelist.add(new Bishop(5,7,this,false));
 			
-			WhitePiecelist.add(new Knight(1,0,this,true));		//Adding all knights to piecelist
+			WhitePiecelist.add(new Knight(1,0,this,true));	//Adding all knights to piecelist
 			WhitePiecelist.add(new Knight(6,0,this,true));
 			BlackPiecelist.add(new Knight(1,7,this,false));
 			BlackPiecelist.add(new Knight(6,7,this,false));
@@ -66,12 +65,12 @@ public class Board
 			{
 				BoardUI[i][1] = WPawn;
 				BoardUI[i][6] = BPawn;
-				WhitePiecelist.add(new WhitePawn(i,1,this,true));  //Adding white pawns to arraylist
-				BlackPiecelist.add(new BlackPawn(i,6,this,false)); //Adding black pawns to arraylist
-				
+				WhitePiecelist.add(new WhitePawn(i,1,this,true)); //Adding white pawns to arraylist
+				BlackPiecelist.add(new BlackPawn(i,6,this,false)); //Adding black pawns to arraylist				
 			}
 			
 		}
+		
 		
 		void Display() //Converting numbers into piece characters for printing using UTF-8 codes
 		{
@@ -83,44 +82,44 @@ public class Board
 					switch (BoardUI[j][i]) 
 					{
 						case 0: System.out.print("_" + "\t"); //Blank space
-							break;
+								break;
 							
 						case 1: System.out.print("\u2659" + "\t");  //White Pawn
-		            				break;
+		            			break;
 		            			
-						case 2: System.out.print("\u2656" + "\t");  //White Castle
-		            				break;
+		            	case 2: System.out.print("\u2656" + "\t");  //White Castle
+		            			break;
 		            			
-						case 3: System.out.print("\u2658" + "\t");  //White Knight
-								break;
-
-						case 4: System.out.print("\u2657" + "\t");  //White Bishop
-								break;
-
-						case 5: System.out.print("\u2655" + "\t");  //White Queen
-								break;
-
-						case 6: System.out.print("\u2654" + "\t");  //White King
-								break;
-
-						case 7: System.out.print("\u265F" + "\t");  //Black Pawn
-								break;
-
-						case 8: System.out.print("\u265C" + "\t");  //Black Castle
-								break;
-
-						case 9: System.out.print("\u265E" + "\t");  //Black Knight
-								break;
-
-						case 10: System.out.print("\u265D" + "\t");  //Black Bishop
-								break;
-
-						case 11: System.out.print("\u265B" + "\t");  //Black Queen
-								break;
-
-						case 12: System.out.print("\u265A" + "\t");  //Black King
-								break;
-			                }		                 
+		            	case 3: System.out.print("\u2658" + "\t");  //White Knight
+		            			break;
+		            	
+		            	case 4: System.out.print("\u2657" + "\t");  //White Bishop
+		            			break;
+		            			
+		            	case 5: System.out.print("\u2655" + "\t");  //White Queen
+		            			break;
+		            			
+		            	case 6: System.out.print("\u2654" + "\t");  //White King
+		            		   	break;
+		            		   	
+			            case 7: System.out.print("\u265F" + "\t");  //Black Pawn
+			                    break;
+			                     
+			            case 8: System.out.print("\u265C" + "\t");  //Black Castle
+			                    break;
+			                     
+			            case 9: System.out.print("\u265E" + "\t");  //Black Knight
+			                    break;
+			                     
+			            case 10: System.out.print("\u265D" + "\t");  //Black Bishop
+			                     break;
+			                     
+			            case 11: System.out.print("\u265B" + "\t");  //Black Queen
+			                     break;
+			                     
+			            case 12: System.out.print("\u265A" + "\t");  //Black King
+			                     break;			                     
+			        }		                 
 									
 				}
 				System.out.println("\n");
@@ -138,457 +137,128 @@ public class Board
 				case 0: System.out.println("No piece selected ");
 						break;
 				
-				case WPawn: for(Piece A: WhitePiecelist)
-							{
-								if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WPawn;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)
-									{
-										for(Piece B: BlackPiecelist)		//Pawn kills enemy piece (remove from piecelist
-										{
-											if(B.x == c && B.y == d)
-											{
-												BlackPiecelist.remove(B);
-												break;
-											}
-										}
-										
-										
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WPawn;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
-								
-								}
-							
-							}
-							break;
+				case WPawn: 	WhiteMover(a,b,c,d,WPawn);
+								break;
 				
-				case WCastle: for(Piece A: WhitePiecelist)
-							  {
-							    	if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WCastle;	//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)		//Kill move
-									{
-										for(Piece B: BlackPiecelist)			
-										{
-											if(B.x == c && B.y == d)
-											{
-												BlackPiecelist.remove(B);
-												break;
-											}
-										}
-										
-											
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WCastle;	//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
+				case WCastle: 	WhiteMover(a,b,c,d,WCastle);
+								break;
 								
-								}
+				case WBishop: 	WhiteMover(a,b,c,d,WBishop);
+								break;
+								
+				case WKnight:	WhiteMover(a,b,c,d,WKnight);
+								break;
+								
+				case WQueen: 	WhiteMover(a,b,c,d,WQueen);
+								break;
+								
+				case WKing: 	WhiteMover(a,b,c,d,WKing);
+								break;
+								
+				case BPawn: 	BlackMover(a,b,c,d,BPawn);
+								break;
 							
-							}
-							break;
+				case BCastle: 	BlackMover(a,b,c,d,BCastle);
+								break;
 								
-				case WBishop: for(Piece A: WhitePiecelist)
-							  {
-							    	if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WBishop;	//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)		//Kill move
-									{
-										for(Piece B: BlackPiecelist)			
-										{
-											if(B.x == c && B.y == d)
-											{
-												BlackPiecelist.remove(B);
-												break;
-											}
-										}
-															
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WBishop;	//UI change
-										A.x = c;				//Logic change
-										A.y = d;				//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
+				case BBishop: 	BlackMover(a,b,c,d,BBishop);
+								break;
 								
-								}
-								
-							}
-							break;
-								
-				case WKnight: for(Piece A: WhitePiecelist)
-							  {
-							    	if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;			//UI change
-										BoardUI[c][d] = WKnight;	//UI change
-										A.x = c;					//Logic change
-										A.y = d;					//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)		//Kill move
-									{
-										for(Piece B: BlackPiecelist)			
-										{
-											if(B.x == c && B.y == d)
-											{
-												BlackPiecelist.remove(B);
-												break;
-											}
-										}
-								
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WKnight;	//UI change
-										A.x = c;				//Logic change
-										A.y = d;				//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
-								
-								}
-							
-							}
-							break;
-								
-				case WQueen: for(Piece A: WhitePiecelist)
-							  {
-							    	if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WQueen;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)		//Kill move
-									{
-										for(Piece B: BlackPiecelist)			
-										{
-											if(B.x == c && B.y == d)
-											{
-												BlackPiecelist.remove(B);
-												break;
-											}
-										}				
-											
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WQueen;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
-									
-								}
-								
-							}
-							break;
-								
-				case WKing: for(Piece A: WhitePiecelist)
-							{
-								if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WKing;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)		//Kill move
-									{
-										for(Piece B: BlackPiecelist)			
-										{
-											if(B.x == c && B.y == d)
-											{
-												BlackPiecelist.remove(B);
-												break;
-											}
-										}
-										
-										
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = WKing;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
-									
-								}
-								
-							}
-							break;
-								
-				case BPawn: for(Piece A: BlackPiecelist)
-							{
-								if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BPawn;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)		//Kill move
-									{
-										for(Piece B: WhitePiecelist)			
-										{
-											if(B.x == c && B.y == d)
-											{
-												WhitePiecelist.remove(B);
-												break;
-											}
-										}
-										
-										
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BPawn;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
-								
-								}
-							
-							}
-							break;
-							
-				case BCastle: for(Piece A: BlackPiecelist)
-							  {
-							    	if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BCastle;	//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)
-									{
-										for(Piece B: WhitePiecelist)		//Pawn kills enemy piece (remove from piecelist)
-										{
-											if(B.x == c && B.y == d)
-											{
-												WhitePiecelist.remove(B);
-												break;
-											}
-										}					
-											
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BCastle;	//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
-								
-								}
-								
-							}
-							break;
-								
-				case BBishop: for(Piece A: BlackPiecelist)
-							  {
-							    	if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BBishop;	//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)		//Kill move
-									{
-										for(Piece B: WhitePiecelist)			
-										{
-											if(B.x == c && B.y == d)
-											{
-												WhitePiecelist.remove(B);
-												break;
-											}
-										}
-											
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BBishop;	//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
-									
-								}
-								
-							}
-							break;
-								
-				case BKnight: for(Piece A: BlackPiecelist)
-							  {
-							    	if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BKnight;	//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)		//Kill move
-									{
-										for(Piece B: WhitePiecelist)			
-										{
-											if(B.x == c && B.y == d)
-											{
-												WhitePiecelist.remove(B);
-												break;
-											}
-										}			
-											
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BKnight;	//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
-									
-								}
-								
-							}
-							break;
+				case BKnight: 	BlackMover(a,b,c,d,BKnight);
+								break;
 						
-				case BQueen: for(Piece A: BlackPiecelist)
-							  {
-							    	if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BQueen;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)		//Kill move
-									{
-										for(Piece B: WhitePiecelist)			
-										{
-											if(B.x == c && B.y == d)
-											{
-												WhitePiecelist.remove(B);
-												break;
-											}
-										}				
-										
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BQueen;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
-									
-								}
+				case BQueen: 	BlackMover(a,b,c,d,BQueen);
+								break;
 								
-							}
-							break;
-								
-				case BKing: for(Piece A: BlackPiecelist)
-							{
-								if(A.x == a && A.y ==b)
-								{
-									if(A.PathCheck(c, d) == 1)
-									{
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BKing;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else if(A.PathCheck(c, d) == 2)		//Kill move
-									{
-										for(Piece B: WhitePiecelist)			
-										{
-											if(B.x == c && B.y == d)
-											{
-												WhitePiecelist.remove(B);
-												break;
-											}
-										}
-										
-										
-										BoardUI[a][b] = 0;		//UI change
-										BoardUI[c][d] = BKing;		//UI change
-										A.x = c;			//Logic change
-										A.y = d;			//Logic change
-									}
-									else
-									{
-										System.out.println(A.PathCheck(c, d));
-									}
-									
-								}
-								
-							}
-							break;
+				case BKing: 	BlackMover(a,b,c,d,BKing);
+								break;
 			
 			}
 		
+		}
+		
+		
+		//Function for moving black & killing white pieces
+		void BlackMover(int a, int b, int c, int d, int m) 
+		{
+			for(Piece A: BlackPiecelist)
+			{
+		    	if(A.x == a && A.y ==b)
+				{
+					if(A.PathCheck(c, d) == 1)
+					{
+						BoardUI[a][b] = 0;			//UI change
+						BoardUI[c][d] = m;			//UI change
+						A.x = c;					//Logic change
+						A.y = d;					//Logic change
+					}
+					else if(A.PathCheck(c, d) == 2)
+					{
+						for(Piece B: WhitePiecelist)		//Kill move
+						{
+							if(B.x == c && B.y == d)
+							{
+								WhitePiecelist.remove(B);
+								break;
+							}
+						}
+						
+						
+						BoardUI[a][b] = 0;		//UI change
+						BoardUI[c][d] = m;		//UI change
+						A.x = c;				//Logic change
+						A.y = d;				//Logic change
+					}
+					else
+					{
+						System.out.println(A.PathCheck(c, d));
+					}
+				
+				}
+			
+			}
+		}
+		
+		
+		//Function for moving white & killing black pieces
+		void WhiteMover(int a, int b, int c, int d, int m)
+		{
+			for(Piece A: WhitePiecelist)
+		  {
+		    	if(A.x == a && A.y ==b)
+				{
+					if(A.PathCheck(c, d) == 1)
+					{
+						BoardUI[a][b] = 0;			//UI change
+						BoardUI[c][d] = m;			//UI change
+						A.x = c;					//Logic change
+						A.y = d;					//Logic change
+					}
+					else if(A.PathCheck(c, d) == 2)		//Kill move
+					{
+						for(Piece B: BlackPiecelist)			
+						{
+							if(B.x == c && B.y == d)
+							{
+								BlackPiecelist.remove(B);
+								break;
+							}
+						}
+						
+						
+						BoardUI[a][b] = 0;		//UI change
+						BoardUI[c][d] = m;		//UI change
+						A.x = c;				//Logic change
+						A.y = d;				//Logic change
+					}
+					else
+					{
+						System.out.println(A.PathCheck(c, d));
+					}
+				
+				}
+			
+			}
 		}
 	
 }
