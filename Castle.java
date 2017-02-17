@@ -20,7 +20,9 @@ public class Castle extends Piece
 		
 		else if(Delta_x == 0 && Math.abs(Delta_y) >0)
 		{
-				for(int i=y; i<y1;)		//Checking path
+			if(Delta_y>0)
+			{
+				for(int i=y+1; i<y1; i++)		//Checking path
 				{
 					if(Gameboard.BoardUI[x][i] > 0)
 					{
@@ -29,12 +31,27 @@ public class Castle extends Piece
 				}
 				
 				return MoveCheck(x1,y1);		//Checking destination
+			}
+			else
+			{
+				for(int i=y1+1; i<y; i++)		//Checking path
+				{
+					if(Gameboard.BoardUI[x][i] > 0)
+					{
+						return 0;
+					}
+				}
+				
+				return MoveCheck(x1,y1);		//Checking destination
+			}
 							
 		}
 		
 		else if(Math.abs(Delta_x) >0 && Delta_y == 0)
 		{
-				for(int i=x; i<x1;)		//Checking path
+			if(Delta_x>0)
+			{
+				for(int i=x+1; i<x1;)		//Checking path
 				{
 					if(Gameboard.BoardUI[i][y] > 0)
 					{
@@ -43,6 +60,19 @@ public class Castle extends Piece
 				}
 				
 				return MoveCheck(x1,y1);		//Checking destination
+			}
+			else
+			{
+				for(int i=x1+1; i<x;)		//Checking path
+				{
+					if(Gameboard.BoardUI[i][y] > 0)
+					{
+						return 0;
+					}
+				}
+				
+				return MoveCheck(x1,y1);		//Checking destination
+			}
 				
 		}
 			
